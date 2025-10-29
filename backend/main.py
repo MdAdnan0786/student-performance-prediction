@@ -1,8 +1,21 @@
+import os
+import sys
+
+# Suppress all warnings before importing anything else
+os.environ['PYTHONWARNINGS'] = 'ignore::RuntimeWarning'
+import warnings
+warnings.filterwarnings('ignore')
+
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
+
+# Early print to verify script is running
+print("Loading Student Performance Prediction API...", flush=True)
+
 import pandas as pd
 import numpy as np
+
 from sklearn.ensemble import RandomForestRegressor, GradientBoostingRegressor
 from sklearn.preprocessing import LabelEncoder, StandardScaler, OneHotEncoder
 from sklearn.model_selection import train_test_split, RandomizedSearchCV
@@ -508,37 +521,57 @@ def dataset_stats():
 
 
 if __name__ == "__main__":
+    print("Entering main block...", flush=True)
     import uvicorn
     import sys
+    import warnings
+    
+    # Suppress numpy warnings
+    warnings.filterwarnings('ignore', category=RuntimeWarning)
     
     try:
-        print("=" * 60)
-        print("Starting Student Performance Prediction API")
-        print("=" * 60)
-        print("Loading and training ML models...")
-        sys.stdout.flush()
+        print("=" * 60, flush=True)
+        print("Starting Student Performance Prediction API", flush=True)
+        print("=" * 60, flush=True)
+        print("Loading and training ML models...", flush=True)
+        print("(This may take 30-60 seconds)", flush=True)
+        print("=" * 60, flush=True)
         
         # Load model before starting the server
         success = load_and_preprocess_data()
         if not success:
-            print("ERROR: Model training failed!")
-            print("Please check the data files in the 'data' directory.")
+            print("\n❌ ERROR: Model training failed!", flush=True)
+            print("Please check the data files in the 'data' directory.", flush=True)
             sys.exit(1)
         
-        print("✓ Model loaded successfully!")
-        print("=" * 60)
-        print("Server will be available at:")
-        print("  - Local:   http://localhost:8000")
-        print("  - Network: http://0.0.0.0:8000")
-        print("  - API Docs: http://localhost:8000/docs")
-        print("=" * 60)
-        print("Press CTRL+C to stop the server")
-        print("=" * 60)
-        sys.stdout.flush()
+        print("\n✓ Model loaded successfully!", flush=True)
+        print("=" * 60, flush=True)
+        print("🚀 Starting web server...", flush=True)
+        print("=" * 60, flush=True)
+        print("Server will be available at:", flush=True)
+        print("  - Local:   http://localhost:8000", flush=True)
+        print("  - Network: http://0.0.0.0:8000", flush=True)
+        print("  - API Docs: http://localhost:8000/docs", flush=True)
+        print("=" * 60, flush=True)
+        print("Press CTRL+C to stop the server", flush=True)
+        print("=" * 60, flush=True)
         
-        uvicorn.run(app, host="0.0.0.0", port=8000, reload=False)
+        uvicorn.run(app, host="0.0.0.0", port=8000, reload=False, log_level="info")
+    except KeyboardInterrupt:
+        print("\n\n✓ Server stopped by user", flush=True)
+        sys.exit(0)
+    except OSError as e:
+        if "address already in use" in str(e).lower() or "10048" in str(e):
+            print(f"\n\n❌ ERROR: Port 8000 is already in use!", flush=True)
+            print("Another instance of the server might be running.", flush=True)
+            print("\nTo fix this:", flush=True)
+            print("1. Close the other server instance, OR", flush=True)
+            print("2. Change the port in the code to something else (e.g., 8001)", flush=True)
+        else:
+            print(f"\n\n❌ FATAL ERROR: {e}", flush=True)
+        sys.exit(1)
     except Exception as e:
-        print(f"\n\nFATAL ERROR: {e}")
+        print(f"\n\n❌ FATAL ERROR: {e}", flush=True)
         import traceback
         traceback.print_exc()
         sys.exit(1)
