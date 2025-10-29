@@ -509,4 +509,36 @@ def dataset_stats():
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    import sys
+    
+    try:
+        print("=" * 60)
+        print("Starting Student Performance Prediction API")
+        print("=" * 60)
+        print("Loading and training ML models...")
+        sys.stdout.flush()
+        
+        # Load model before starting the server
+        success = load_and_preprocess_data()
+        if not success:
+            print("ERROR: Model training failed!")
+            print("Please check the data files in the 'data' directory.")
+            sys.exit(1)
+        
+        print("✓ Model loaded successfully!")
+        print("=" * 60)
+        print("Server will be available at:")
+        print("  - Local:   http://localhost:8000")
+        print("  - Network: http://0.0.0.0:8000")
+        print("  - API Docs: http://localhost:8000/docs")
+        print("=" * 60)
+        print("Press CTRL+C to stop the server")
+        print("=" * 60)
+        sys.stdout.flush()
+        
+        uvicorn.run(app, host="0.0.0.0", port=8000, reload=False)
+    except Exception as e:
+        print(f"\n\nFATAL ERROR: {e}")
+        import traceback
+        traceback.print_exc()
+        sys.exit(1)

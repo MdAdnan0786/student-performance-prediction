@@ -8,7 +8,9 @@
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "typecheck": "tsc --noEmit -p tsconfig.app.json"
+    "typecheck": "tsc --noEmit -p tsconfig.app.json",
+    "backend": "cd backend && python -m uvicorn main:app --reload --host 127.0.0.1 --port 8000",
+    "start:all": "npm-run-all --parallel backend dev"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.57.4",
