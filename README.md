@@ -1,5 +1,5 @@
 # Student Performance Prediction System
-https://mdadnan0786-student-u5z4.bolt.host
+
 A full-stack ML application that predicts student academic performance using machine learning models trained on multiple datasets.
 
 ## Features
@@ -26,34 +26,80 @@ A full-stack ML application that predicts student academic performance using mac
 - Vite
 - Lucide React (Icons)
 
-## Setup Instructions
+## 🚀 Quick Start
 
-### 1. Backend Setup
+### Prerequisites
+- Python 3.x
+- Node.js and npm
+- Git (optional)
 
+### Installation
+
+1. **Clone the repository** (or download the project)
 ```bash
-# Navigate to backend directory
-cd backend
-
-# Install Python dependencies
-pip install -r requirements.txt
-
-# Run the FastAPI server
-python main.py
+git clone <repository-url>
+cd student-performance-predict
 ```
 
-The backend will start at `http://localhost:8000`
-
-### 2. Frontend Setup
-
+2. **Install Backend Dependencies**
 ```bash
-# Install Node dependencies (from project root)
-npm install
+cd backend
+pip install -r requirements.txt
+cd ..
+```
 
-# Run the development server
+3. **Install Frontend Dependencies**
+```bash
+npm install
+```
+
+### Running the Application
+
+#### Option 1: Using Startup Scripts (Recommended - Windows)
+
+**For PowerShell:**
+```powershell
+.\start.ps1
+```
+
+**For Command Prompt:**
+```cmd
+start.bat
+```
+
+These scripts will automatically start both servers in separate terminal windows.
+
+#### Option 2: Using Python Launcher (Simple)
+
+**Start Backend:**
+```bash
+cd backend
+python start_server.py
+```
+
+**Start Frontend (in a new terminal):**
+```bash
 npm run dev
 ```
 
-The frontend will start at `http://localhost:5173`
+#### Option 3: Manual Start (Advanced)
+
+**Start Backend:**
+```bash
+cd backend
+python -m uvicorn main:app --reload --host 0.0.0.0 --port 8000
+```
+
+**Start Frontend (in a new terminal):**
+```bash
+npm run dev
+```
+
+### Access the Application
+
+- **Frontend**: http://localhost:5173
+- **Backend API**: http://localhost:8000
+- **API Documentation**: http://localhost:8000/docs
 
 ## Data Sources
 
@@ -107,6 +153,7 @@ Typical metrics:
 .
 ├── backend/
 │   ├── main.py              # FastAPI application
+│   ├── start_server.py      # Simple Python server launcher
 │   ├── requirements.txt     # Python dependencies
 │   └── README.md           # Backend documentation
 ├── data/                    # Training datasets
@@ -117,6 +164,8 @@ Typical metrics:
 │   │   └── ModelInfo.tsx
 │   ├── App.tsx            # Main application
 │   └── main.tsx           # React entry point
+├── start.ps1              # PowerShell startup script
+├── start.bat              # Batch startup script
 └── README.md              # This file
 ```
 
@@ -132,3 +181,32 @@ npm run typecheck
 # Lint code
 npm run lint
 ```
+
+## 🔧 Troubleshooting
+
+### Backend Won't Start
+- Ensure Python is installed: `python --version`
+- Check if port 8000 is available
+- Verify all backend dependencies are installed: `pip install -r backend/requirements.txt`
+
+### Frontend Won't Start
+- Ensure Node.js is installed: `node --version`
+- Check if port 5173 is available
+- Run `npm install` to install dependencies
+
+### "Backend Offline" Message
+- Make sure the backend server is running on port 8000
+- Check the backend terminal for any error messages
+- Try restarting both servers
+
+### NumPy Warnings
+- Warnings about NumPy being experimental on Windows 64-bit are normal and don't affect functionality
+
+## 📚 Additional Documentation
+
+- See [`backend/README.md`](backend/README.md) for backend API details
+- See [`backend/CHANGELOG.md`](backend/CHANGELOG.md) for version history
+
+## 📄 License
+
+This project is for educational purposes.
