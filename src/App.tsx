@@ -29,7 +29,7 @@ function App() {
   const [error, setError] = useState<string | null>(null);
   const [backendStatus, setBackendStatus] = useState<'checking' | 'online' | 'offline'>('checking');
 
-  const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000';
+  const API_URL = import.meta.env.VITE_API_URL || 'https://student-performance-prediction-l7zw.vercel.app/';
 
   useEffect(() => {
     checkBackendStatus();
