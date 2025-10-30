@@ -1,0 +1,29 @@
+# Exclude data files - not needed at runtime
+data/
+src/
+
+# Exclude development scripts
+test_run.py
+run_server.py
+start_server.py
+
+# Exclude Python cache files
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+.pytest_cache/
+.venv/
+venv/
+env/
+
+# Exclude version control
+.git/
+.gitignore
+.gitattributes
+
+# Exclude documentation and config files that aren't needed
+.DS_Store
+*.md
+.env.local
+.env.*.local
