@@ -10,7 +10,8 @@
     "preview": "vite preview",
     "typecheck": "tsc --noEmit -p tsconfig.app.json",
     "backend": "cd backend && C:\\Python313\\python.exe -m uvicorn main:app --reload --host 127.0.0.1 --port 8000",
-    "start:all": "npm-run-all --parallel backend dev"
+    "start:all": "npm-run-all --parallel backend dev",
+    "start": "vite preview --port $PORT --host"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.57.4",
