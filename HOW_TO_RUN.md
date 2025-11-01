@@ -18,12 +18,25 @@ start.bat
 
 These scripts will automatically start both the backend and frontend servers in separate terminal windows.
 
-### Option 2: Manual Start
+### Option 2: Python Launcher (Simple)
+
+Start the backend using the included Python launcher (no extra flags needed):
+```bash
+cd backend
+python start_server.py
+```
+
+Then, in a new terminal, start the frontend:
+```bash
+npm run dev
+```
+
+### Option 3: Manual Start
 
 #### Start Backend:
 ```bash
 cd backend
-python -m uvicorn main:app --reload --host 127.0.0.1 --port 8000
+python -m uvicorn main:app --reload --host 0.0.0.0 --port 8000
 ```
 
 #### Start Frontend (in a new terminal):
@@ -77,6 +90,8 @@ npm install
 student-performance-predict/
 ├── backend/              # FastAPI backend server
 │   ├── main.py          # Main API application
+│   ├── start_server.py  # Simple Python launcher for the backend
+│   ├── api/             # Minimal FastAPI app for cloud deployment (Vercel)
 │   └── requirements.txt # Python dependencies
 ├── src/                 # React frontend source
 │   ├── components/      # React components
@@ -103,6 +118,10 @@ student-performance-predict/
 - Make sure the backend server is running on port 8000
 - Check the backend terminal for any error messages
 - Try restarting both servers
+
+If you use `npm run backend`, note that `package.json` contains a Windows-specific Python path
+(`C:\\Python313\\python.exe`). If your Python is elsewhere, either edit that path or prefer
+the startup scripts (`start.ps1` / `start.bat`) or `python backend/start_server.py`.
 
 ## 📝 Features
 

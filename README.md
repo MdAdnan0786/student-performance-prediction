@@ -1,4 +1,4 @@
-# Student Performance Prediction System https://student-performance-prediction-b7mf.onrender.com
+# Student Performance Prediction System
 
 A full-stack ML application that predicts student academic performance using machine learning models trained on multiple datasets.
 
@@ -127,6 +127,8 @@ The model requires 8 input features:
 - `GET /` - Health check
 - `GET /model-info` - Get model metrics and information
 - `POST /predict` - Make a prediction (requires student data)
+- `GET /batch-predict` - Run predictions across datasets and save enriched CSVs (optional)
+- `GET /dataset-stats` - Summary stats for training datasets (diagnostics)
 
 ## Model Performance
 
@@ -154,6 +156,7 @@ Typical metrics:
 ├── backend/
 │   ├── main.py              # FastAPI application
 │   ├── start_server.py      # Simple Python server launcher
+│   ├── api/                 # Minimal FastAPI app for serverless (e.g., Vercel)
 │   ├── requirements.txt     # Python dependencies
 │   └── README.md           # Backend documentation
 ├── data/                    # Training datasets
@@ -166,8 +169,16 @@ Typical metrics:
 │   └── main.tsx           # React entry point
 ├── start.ps1              # PowerShell startup script
 ├── start.bat              # Batch startup script
+├── render.yaml            # (Optional) Render.com deployment config
+├── runtime.txt            # (Optional) Python runtime hint for PaaS
 └── README.md              # This file
 ```
+
+## Deployment (optional)
+
+- A minimal FastAPI app exists at `backend/api/main.py` for serverless hosts like Vercel.
+- Files like `render.yaml` and `runtime.txt` are included as starting points for cloud deployment.
+	These are optional and not required for local development.
 
 ## Development
 

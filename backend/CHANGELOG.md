@@ -2,6 +2,13 @@
 
 All notable changes to the Student Performance Prediction backend will be documented in this file.
 
+## [1.1.2] - 2025-11-01
+- Documentation refresh across repository:
+	- Updated root README with additional endpoints, deployment notes, and project structure.
+	- Clarified HOW_TO_RUN with Python launcher and correct host binding (`0.0.0.0`).
+	- Added notes about `package.json` Windows-specific backend script path.
+	- Improved backend README run options and uvicorn CLI usage.
+
 ## [1.1.1] - 2025-10-23
 - Fixed constant prediction issue by validating feature mapping and ensuring `previous_grade` is consistently used in training and inference.
 - Added `GET /dataset-stats` endpoint to expose dataset distribution statistics for diagnostics.

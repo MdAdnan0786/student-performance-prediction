@@ -38,6 +38,11 @@ npm run backend
 npm run dev
 ```
 
+Note: The `backend` script in `package.json` uses a hard-coded Windows Python path
+(`C:\\Python313\\python.exe`) and `--host 127.0.0.1`. If your Python is installed elsewhere,
+either update that path or prefer the startup scripts (`start.ps1` / `start.bat`) or
+`python backend/start_server.py`. For network access, prefer `--host 0.0.0.0`.
+
 ## 📝 Updated Files
 
 1. **start.ps1** - PowerShell script to start both servers

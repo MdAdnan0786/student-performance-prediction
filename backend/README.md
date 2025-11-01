@@ -22,9 +22,9 @@ python start_server.py
 python -m uvicorn main:app --reload --host 0.0.0.0 --port 8000
 ```
 
-**Option C: Using main.py module import (Advanced)**
+**Option C: Using uvicorn CLI**
 ```bash
-uvicorn main:app --reload --host 0.0.0.0 --port 8000
+uvicorn backend.main:app --reload --host 0.0.0.0 --port 8000
 ```
 
 The server will be available at `http://localhost:8000` with API docs at `http://localhost:8000/docs`.
